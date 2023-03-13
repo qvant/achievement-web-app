@@ -3,10 +3,12 @@ package com.example.achivementwebapp.dto;
 import com.example.achivementwebapp.domain.Company;
 import com.example.achivementwebapp.domain.Console;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class CompanyDto {
     long id;
     String name;

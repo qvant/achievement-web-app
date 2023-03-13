@@ -1,7 +1,11 @@
 package com.example.achivementwebapp.dto;
 
 import com.example.achivementwebapp.domain.Game;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 public class GameDto {
-    public GameDto(long id, String name, String extId) {
-        this.id = id;
-        this.name = name;
-        this.extId = extId;
-    }
 
     private long id;
     private String name;
@@ -29,8 +29,10 @@ public class GameDto {
     private PlatformDto platform;
 
     public static GameDto toDto(Game game){
-        return new GameDto(game.getId(), game.getName(), game.getExtId(), ConsoleDto.toDto(game.getConsole()), game.getNumOwners(),
-                game.getReleaseDate(), game.isHasAchievements(), CompanyDto.toDto(game.getPublisher()), CompanyDto.toDto(game.getDeveloper()),
-                game.getIconUrl(), PlatformDto.toDto(game.getPlatform()));
+        var b = GameDto.builder().console(ConsoleDto.toDto(game.getConsole())).
+                iconUrl(game.getIconUrl()).id(game.getId()).name(game.getName()).extId(game.getExtId()).hasAchievements(game.isHasAchievements())
+                .developer(CompanyDto.toDto(game.getDeveloper())).publisher(CompanyDto.toDto(game.getPublisher())).platform(PlatformDto.toDto(game.getPlatform()))
+                .numOwners(game.getNumOwners()).releaseDate(game.getReleaseDate()).build();
+        return b;
     }
 }
