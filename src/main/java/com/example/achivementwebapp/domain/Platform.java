@@ -1,9 +1,18 @@
 package com.example.achivementwebapp.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.RequiredArgsConstructor;
 
+@Entity
+@Table(name = "platforms", schema="achievements_hunt")
 @RequiredArgsConstructor
 public class Platform {
-    long id;
-    String name;
+    @Id
+    @Column(name = "id")
+    private long id;
+    @Column(name = "name")
+    private String name;
 }

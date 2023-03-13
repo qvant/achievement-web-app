@@ -1,9 +1,12 @@
 package com.example.achivementwebapp.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Primary;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +15,23 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
+@Table(name = "games", schema="achievements_hunt")
 public class Game {
+    @Id
+    @Column(name = "id")
     long id;
+    @Column(name = "name")
     String name;
+    @Column(name = "ext_id")
     String extId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "console_id")
     Console console;
+    @Column(name = "icon_url")
     String iconUrl;
-    LocalDate releaseDate;
-    String publisher;
-    String developer;
-    ArrayList<String> genres;
-    ArrayList<String> features;
-    ArrayList<Achievement> achievements;
+    @Column(name = "release_date")
+    String releaseDate;
 
     public long getId() {
         return id;
@@ -65,51 +73,12 @@ public class Game {
         this.iconUrl = iconUrl;
     }
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
-    }
-
-    public ArrayList<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(ArrayList<String> genres) {
-        this.genres = genres;
-    }
-
-    public ArrayList<String> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(ArrayList<String> features) {
-        this.features = features;
-    }
-
-    public ArrayList<Achievement> getAchievements() {
-        return achievements;
-    }
-
-    public void setAchievements(ArrayList<Achievement> achievements) {
-        this.achievements = achievements;
-    }
 }
