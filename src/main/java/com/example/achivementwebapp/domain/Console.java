@@ -2,12 +2,14 @@ package com.example.achivementwebapp.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 
 @AllArgsConstructor
 @Entity
 @Table(name = "consoles", schema="achievements_hunt")
+@Getter
 public class Console {
     @Id
     @Column(name="id")
@@ -17,7 +19,7 @@ public class Console {
     @Column(name="ext_id")
     private  String extId;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="platform_id")
+    @JoinColumn(name="platform_id", nullable = false)
     private  Platform platform;
     public Console(){};
 }

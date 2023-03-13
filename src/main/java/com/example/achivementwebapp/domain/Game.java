@@ -20,65 +20,36 @@ import java.util.List;
 public class Game {
     @Id
     @Column(name = "id")
-    long id;
+    private long id;
     @Column(name = "name")
-    String name;
+    private String name;
     @Column(name = "ext_id")
-    String extId;
+    private String extId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "console_id")
-    Console console;
+    private Console console;
     @Column(name = "icon_url")
-    String iconUrl;
+    private String iconUrl;
     @Column(name = "release_date")
-    String releaseDate;
+    private String releaseDate;
 
-    public long getId() {
-        return id;
-    }
+    @Column(name = "num_owners")
+    private Long numOwners;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @Column(name = "has_achievements")
+    private boolean hasAchievements;
 
-    public String getName() {
-        return name;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "publisher_id")
+    private Company publisher;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "developer_id")
+    private Company developer;
 
-    public String getExtId() {
-        return extId;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "platform_id", nullable = false)
+    private Platform platform;
 
-    public void setExtId(String extId) {
-        this.extId = extId;
-    }
-
-    public Console getConsole() {
-        return console;
-    }
-
-    public void setConsole(Console console) {
-        this.console = console;
-    }
-
-    public String getIconUrl() {
-        return iconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
 
 }

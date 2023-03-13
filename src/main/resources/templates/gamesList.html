@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all games</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .games {
+            border: 1px solid steelblue;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        .games tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+        .dependencies td:last-child, td:first-child {
+            width: 50px;
+        }
+
+
+
+    </style>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/">Back to root</a>
+<br>
+<table class="games">
+    <thead>
+    <tr>
+        <th hidden>ID</th>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Platform</th>
+        <th>Console</th>
+        <th>Owners</th>
+        <th>Has Achievements</th>
+        <th>Publisher</th>
+        <th>Developer</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.get('/api/games').done(function (games) {
+            games.forEach(function (game) {
+                var consoleName = game.console.name ?? ""
+                var PlatformName = game.platform.name ?? ""
+                var publisherName = game.publisher.name ?? ""
+                var developerName = game.developer.name ?? ""
+                $('tbody').append(`
+                    <tr>
+                        <td hidden>${game.id}</td>
+                        <td><img src="${game.iconUrl}" width=133; height=50;></img></td>
+                        <td>${game.name}</td>
+                        <td>${PlatformName}</td>
+                        <td>${consoleName}</td>
+                        <td>${game.numOwners}</td>
+                        <td>${game.hasAchievements}</td>
+                        <td>${publisherName} </td>
+                        <td>${developerName} </td>
+                    </tr>
+                `)
+            });
+        })
+    });
+</script>
+<br>
+<a href="/">Back to root</a>
+</body>
+</html>
