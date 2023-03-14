@@ -6,6 +6,8 @@
     <style type="text/css">
         body {
             padding: 50px;
+            background-color: #5A5A5A;
+            color: lightgrey;
         }
 
         .games {
@@ -28,7 +30,7 @@
     </style>
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body >
 <a href="/">Back to root</a>
 <br>
 <table class="games">
@@ -60,7 +62,7 @@
                     <tr>
                         <td hidden>${game.id}</td>
                         <td><img src="${game.iconUrl}" width=133; height=50;></img></td>
-                        <td>${game.name}</td>
+                        <td><a href="game?game_id=${game.id}&platform_id=${game.platform.id}">${game.name}</a></td>
                         <td>${PlatformName}</td>
                         <td>${consoleName}</td>
                         <td>${game.numOwners}</td>

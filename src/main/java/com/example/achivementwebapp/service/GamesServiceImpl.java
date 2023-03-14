@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,5 +16,10 @@ public class GamesServiceImpl implements GamesService {
     @Override
     public List<Game> findAll() {
         return gameRepository.findAll();
+    }
+
+    @Override
+    public Game findByIdAndPlatformId(Long id, Long platformId) {
+        return gameRepository.findByIdAndPlatformId(id, platformId).orElseThrow(()-> new RuntimeException(("Not found game " + id)));
     }
 }
