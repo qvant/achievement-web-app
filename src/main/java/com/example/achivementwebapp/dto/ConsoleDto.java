@@ -3,10 +3,12 @@ package com.example.achivementwebapp.dto;
 import com.example.achivementwebapp.domain.Console;
 import com.example.achivementwebapp.domain.Platform;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class ConsoleDto {
     long id;
     String name;
