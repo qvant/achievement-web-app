@@ -6,6 +6,7 @@ import com.example.achivementwebapp.service.GamesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,8 @@ private final GamesService gamesService;
     return gamesService.findAll().stream().map(GameDto::toDto).collect(Collectors.toList());
 }
 
-    @GetMapping("/api/game")
-    public GameDto findGames(@RequestParam(name = "game_id") Long gameId, @RequestParam(name = "platform_id") Long platformId){
+    @GetMapping("/api/platform/{platform_id}/game/{game_id}/")
+    public GameDto findGames(@PathVariable(name = "platform_id") Long platformId, @PathVariable(name = "game_id") Long gameId){
         return GameDto.toDto(gamesService.findByIdAndPlatformId(gameId, platformId));
     }
 

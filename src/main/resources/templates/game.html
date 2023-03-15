@@ -16,7 +16,7 @@
         }
 
         input:read-only {
-            background: lightgray;
+            background: #5A5A5A;
         }
 
         .row {
@@ -30,105 +30,21 @@
 
     <h3>Game Info:</h3>
 
-    <script>
-      function postTask() {
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var data = {"id": urlParams.get('id'),
-                    "type": document.getElementById('dependency-type-input').value,
-                    "taskId": document.getElementById('dependency-task-input').value,
-                    "taskParentId": document.getElementById('dependency-task-parent-input').value
-                    };
-        if (!data["type"]) {
-            alert( 'Type must be specified!' );
-            return;
-        }
-        if (!data["taskId"]) {
-            alert( 'Task must be specified!' );
-            return;
-        }
-        if (!data["taskParentId"]) {
-            alert( 'Parent task must be specified!' );
-            return;
-        }
-        if (data["taskParentId"] == data["taskId"]) {
-            alert( 'Tasks and Parent can\'t be the same!' );
-            return;
-        }
-        $.ajax({
-           url: '/api/dependencies/',
-           type: 'PUT',
-           contentType: 'application/json',
-           data: JSON.stringify(data),
-           success: function(result) {
-                $(location).prop('href', '/dependencies');
-            },
-            error: function(result) {
-                console.log(result);
-                },
-        });
-      }
-    </script>
-
 
     <div class="row">
-        <label for="dependency-type-input">Type:</label>
-        <select id="dependency-type-input" name="dependencyType"></select>
+        <label for="game-name">Name:</label>
+        <input id="game-name" name="game-name" type="text" readonly></input>
     </div>
 
-
-    <div class="row">
-        <label for="dependency-task-input">Task:</label>
-        <select id="dependency-task-input" name="dependencyTask"></select>
-    </div>
-
-    <div class="row">
-        <label for="dependency-task-parent-input">Parent:</label>
-        <select id="dependency-task-parent-input" name="dependencyTaskParent"></select>
-    </div>
 
     <script>
     $(function () {
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
 
-        $.get('/api/dependencies/' + urlParams.get('id')).done(function (dependency) {
-
-            $.get('/api/tasks').done(function (tasks) {
-                select = document.getElementById('dependency-task-input');
-                selectParent = document.getElementById('dependency-task-parent-input');
-                tasks.forEach(function (task) {
-                    var option = document.createElement('option');
-                    option.value = task.id
-                    option.text = task.name
-                    if (task.id == dependency.taskId){
-                        select.value = task.id
-                        option.selected = 'selected'
-                    }
-                    select.appendChild(option)
-                    var optionParent = document.createElement('option');
-                    optionParent.value = task.id
-                    optionParent.text = task.name
-                    if (task.id == dependency.taskParentId){
-                        select.value = task.id
-                        option.selected = 'selected'
-                    }
-                    selectParent.appendChild(optionParent)
-                });
-            })
-            $.get('/api/dependencyTypes').done(function (dependencyTypes) {
-                select = document.getElementById('dependency-type-input');
-                dependencyTypes.forEach(function (dependencyType) {
-                    var option = document.createElement('option');
-                    option.value = dependencyType.id
-                    option.text = dependencyType.name
-                    if (dependencyType.id == dependency.type){
-                        select.value = dependencyType.id
-                        option.selected = 'selected'
-                    }
-                    select.appendChild(option)
-                });
-            })
+        $.get('/api/platform/' + urlParams.get('platform_id') + '/game/' + urlParams.get('game_id') + '/').done(function (game) {
+            select = document.getElementById('game-name');
+            select.value = game.name
         })
     });
 
