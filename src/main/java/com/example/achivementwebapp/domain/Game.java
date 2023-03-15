@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "games", schema="achievements_hunt")
+@NamedEntityGraph(name = "games-platform-company", includeAllAttributes=true)
 public class Game {
     @Id
     @Column(name = "id")
