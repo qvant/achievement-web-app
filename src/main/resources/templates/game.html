@@ -36,6 +36,47 @@
         <input id="game-name" name="game-name" type="text" readonly></input>
     </div>
 
+    <div class="row">
+        <label for="console-name">Console:</label>
+        <input id="console-name" name="console-name" type="text" readonly></input>
+    </div>
+
+    <div class="row">
+        <label for="release-date">Release date:</label>
+        <input id="release-date" name="release-date" type="text" readonly></input>
+    </div>
+
+    <div class="row">
+        <label for="num-owners">Number of owners:</label>
+        <input id="num-owners" name="num-owners" type="text" readonly></input>
+    </div>
+
+    <div class="row">
+        <label for="publisher-name">Publisher:</label>
+        <input id="publisher-name" name="publisher-name" type="text" readonly></input>
+    </div>
+
+    <div class="row">
+        <label for="developer-name">Developer:</label>
+        <input id="developer-name" name="developer-name" type="text" readonly></input>
+    </div>
+
+    <table class="taskInstances">
+        <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Icon</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Number of players unlocked</th>
+            <th>Percent of players unlocked</th>
+            <th>Hidden</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
 
     <script>
     $(function () {
@@ -45,15 +86,39 @@
         $.get('/api/platform/' + urlParams.get('platform_id') + '/game/' + urlParams.get('game_id') + '/').done(function (game) {
             select = document.getElementById('game-name');
             select.value = game.name
+            select = document.getElementById('console-name');
+            select.value = game.console.name ?? ""
+            select = document.getElementById('release-date');
+            select.value = game.releaseDate
+            select = document.getElementById('num-owners');
+            select.value = game.numOwners
+            select = document.getElementById('num-owners');
+            select.value = game.numOwners
+            select = document.getElementById('publisher-name');
+            select.value = game.publisher.name
+            select = document.getElementById('developer-name');
+            select.value = game.developer.name
+            game.achievements.forEach(function (achievement) {
+                 $('tbody').append(`
+                    <tr>
+                        <td hidden>${achievement.id}</td>
+                        <td><img src="${achievement.iconUrl}"/></td>
+                        <td>${achievement.name}</td>
+                        <td>${achievement.description}</td>
+                        <td>${achievement.numOwners}</td>
+                        <td>${achievement.percentOwners}</td>
+                        <td>${achievement.hidden}</td>
+                    </tr>
+                `)
+            })
         })
     });
 
     </script>
 
     <div class="row">
-        <button onclick="postTask()">Save</button>
-        <a href="dependencies">
-            <button type="button">Cancel</button>
+        <a href="games">
+            <button type="button">Back to games list</button>
         </a>
     </div>
 

@@ -9,6 +9,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Getter
 @Setter
@@ -27,8 +30,18 @@ public class GameDto {
     private CompanyDto developer;
     private String iconUrl;
     private PlatformDto platform;
+    private List<AchievementDto> achievements;
 
     public static GameDto toDto(Game game){
+        var b = GameDto.builder().console(ConsoleDto.toDto(game.getConsole())).
+                iconUrl(game.getIconUrl()).id(game.getId()).name(game.getName()).extId(game.getExtId()).hasAchievements(game.isHasAchievements())
+                .developer(CompanyDto.toDto(game.getDeveloper())).publisher(CompanyDto.toDto(game.getPublisher())).platform(PlatformDto.toDto(game.getPlatform()))
+                .numOwners(game.getNumOwners()).releaseDate(game.getReleaseDate()).achievements(game.getAchievements().stream().map(AchievementDto::toDto).collect(Collectors.toList())).build();
+        return b;
+    }
+
+    // no achievements
+    public static GameDto toDtoLight(Game game){
         var b = GameDto.builder().console(ConsoleDto.toDto(game.getConsole())).
                 iconUrl(game.getIconUrl()).id(game.getId()).name(game.getName()).extId(game.getExtId()).hasAchievements(game.isHasAchievements())
                 .developer(CompanyDto.toDto(game.getDeveloper())).publisher(CompanyDto.toDto(game.getPublisher())).platform(PlatformDto.toDto(game.getPlatform()))

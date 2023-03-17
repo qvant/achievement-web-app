@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 import org.springframework.context.annotation.Primary;
 
 import java.time.Instant;
@@ -18,7 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "games", schema="achievements_hunt")
-@NamedEntityGraph(name = "games-platform-company", includeAllAttributes=true)
+@NamedEntityGraph(name = "game-all", includeAllAttributes=true)
+@NamedEntityGraph(name = "games-platform-company", attributeNodes={@NamedAttributeNode("platform"), @NamedAttributeNode("publisher"),
+        @NamedAttributeNode("developer"), @NamedAttributeNode("console")})
 public class Game {
     @Id
     @Column(name = "id")
@@ -52,6 +55,10 @@ public class Game {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "platform_id", nullable = false)
     private Platform platform;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private List<Achievement> achievements;
 
 
 }

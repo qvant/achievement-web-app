@@ -13,5 +13,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     @EntityGraph(value = "games-platform-company")
     List<Game> findAll();
 
+    @EntityGraph(value = "game-all")
     Optional<Game> findByIdAndPlatformId(Long id, Long platformId);
 }

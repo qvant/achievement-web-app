@@ -20,7 +20,7 @@ public class GamesController {
 private final GamesService gamesService;
 @GetMapping("/api/games")
     public List<GameDto> findGames(){
-    return gamesService.findAll().stream().map(GameDto::toDto).collect(Collectors.toList());
+    return gamesService.findAll().stream().map(GameDto::toDtoLight).collect(Collectors.toList());
 }
 
     @GetMapping("/api/platform/{platform_id}/game/{game_id}/")
