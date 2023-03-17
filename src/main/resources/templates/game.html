@@ -3,27 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Game</title>
-    <style type="text/css">
-        body {
-            padding: 50px;
-            background-color: #5A5A5A;
-            color: lightgrey;
-        }
-
-        label {
-            display: inline-block;
-            width: 100px;
-        }
-
-        input:read-only {
-            background: #5A5A5A;
-        }
-
-        .row {
-            margin-top: 10px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="games.css">
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -61,7 +41,7 @@
         <input id="developer-name" name="developer-name" type="text" readonly></input>
     </div>
 
-    <table class="taskInstances">
+    <table class="games">
         <thead>
         <tr>
             <th hidden>ID</th>
@@ -102,7 +82,7 @@
                  $('tbody').append(`
                     <tr>
                         <td hidden>${achievement.id}</td>
-                        <td><img src="${achievement.iconUrl}"/></td>
+                        <td><img src="${achievement.iconUrl}" width=80;/></td>
                         <td>${achievement.name}</td>
                         <td>${achievement.description}</td>
                         <td>${achievement.numOwners}</td>
