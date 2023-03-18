@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all players</title>
+    <link rel="stylesheet" href="games.css">
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body >
+<a href="/">Back to root</a>
+<br>
+<table class="games">
+    <thead>
+    <tr>
+        <th hidden>ID</th>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Platform</th>
+        <th>Created</th>
+        <th>Last update</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.get('/api/players').done(function (players) {
+            players.forEach(function (player) {
+                var PlatformName = player.platform.name ?? ""
+                $('tbody').append(`
+                    <tr>
+                        <td hidden>${player.id}</td>
+                        <td><div class="player_avatar"><img src="${player.avatarUrl}"/></div></td>
+                        <td><a href="playerShow?player_id=${player.id}&platform_id=${player.platform.id}">${player.name}</a></td>
+                        <td>${PlatformName}</td>
+                        <td>${player.dtCreate}</td>
+                        <td>${player.dtUpdate}</td>
+                    </tr>
+                `)
+            });
+        })
+    });
+</script>
+<br>
+<a href="/">Back to root</a>
+</body>
+</html>

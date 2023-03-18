@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Player</title>
+    <link rel="stylesheet" href="games.css">
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h3>Player Info:</h3>
+
+    <img id="player-avatar">
+
+    <div class="row">
+        <label for="player-name">Name:</label>
+        <input id="player-name" name="player-name" type="text" readonly></input>
+    </div>
+
+
+    <table class="players">
+        <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Icon</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Number of players unlocked</th>
+            <th>Percent of players unlocked</th>
+            <th>Hidden</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <script>
+    $(function () {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+
+        $.get('/api/platform/' + urlParams.get('platform_id') + '/player/' + urlParams.get('player_id') + '/').done(function (player) {
+            select = document.getElementById('player-name');
+            select.value = player.name
+            select = document.getElementById('player-avatar');
+            select.src = player.avatarUrl ?? ""
+
+        })
+    });
+
+    </script>
+
+    <div class="row">
+        <a href="players">
+            <button type="button">Back to players list</button>
+        </a>
+    </div>
+
+</body>
+</html>

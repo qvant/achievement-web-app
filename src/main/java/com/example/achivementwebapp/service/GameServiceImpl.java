@@ -5,13 +5,11 @@ import com.example.achivementwebapp.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class GamesServiceImpl implements GamesService {
+public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
     @Override
     public List<Game> findAll() {

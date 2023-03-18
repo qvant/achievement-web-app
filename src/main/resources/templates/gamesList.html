@@ -37,7 +37,7 @@
                 $('tbody').append(`
                     <tr>
                         <td hidden>${game.id}</td>
-                        <td><img src="${game.iconUrl}" width=133; height=50;></img></td>
+                        <td><div class="table_icon"><img src="${game.iconUrl}"/></div></td>
                         <td><a href="gameShow?game_id=${game.id}&platform_id=${game.platform.id}">${game.name}</a></td>
                         <td>${PlatformName}</td>
                         <td>${consoleName}</td>

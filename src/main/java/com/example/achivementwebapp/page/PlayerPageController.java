@@ -4,20 +4,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class GamesPageController {
+public class PlayerPageController {
 
-    @GetMapping("/games")
+    @GetMapping("/players")
     public String listPage(Model model) {
-        return "gamesList";
+        return "playersList";
     }
 
-    @GetMapping("/gameShow")
+    @GetMapping("/playerShow")
     public String showPage() {
-        return "game";
+        return "player";
     }
 
 }
