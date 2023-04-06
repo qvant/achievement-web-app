@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,4 +29,6 @@ public class Player {
     private LocalDate dtUpdate;
     @Column(name = "avatar_url")
     private String avatarUrl;
+    @Transient
+    private List<PlayerAchievement> lastAchievements;
 }

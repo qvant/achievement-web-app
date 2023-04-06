@@ -46,6 +46,21 @@
             select = document.getElementById('player-avatar');
             select.src = player.avatarUrl ?? ""
 
+            player.lastAchievements.forEach(function (playerAchievement) {
+                var PlatformName = player.platform.name ?? ""
+                $('tbody').append(`
+                    <tr>
+                        <td hidden>${playerAchievement.id}</td>
+                        <td><div class="achievement_icon"><img src="${playerAchievement.achievement.iconUrl}"/></div></td>
+                        <td>${playerAchievement.achievement.name}</td>
+                        <td>${playerAchievement.achievement.description}</td>
+                        <td>${playerAchievement.achievement.numOwners}</td>
+                        <td>${playerAchievement.achievement.percentOwners}</td>
+                        <td>${playerAchievement.achievement.hidden}</td>
+                    </tr>
+                `)
+            });
+
         })
     });
 
