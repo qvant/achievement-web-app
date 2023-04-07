@@ -31,4 +31,6 @@ public class Player {
     private String avatarUrl;
     @Transient
     private List<PlayerAchievement> lastAchievements;
+    @Transient
+    private List<PlayerAchievement> rarestAchievements;
 }

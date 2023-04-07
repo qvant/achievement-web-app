@@ -10,15 +10,20 @@
 
     <h3>Player Info:</h3>
 
-    <img id="player-avatar">
+    <img id="player-avatar"/>
+
+    <br/>
 
     <div class="row">
         <label for="player-name">Name:</label>
         <input id="player-name" name="player-name" type="text" readonly></input>
     </div>
 
+    <br/>
 
-    <table class="players">
+    <h3>Last achievements:</h3>
+
+    <table class="player-achievements" >
         <thead>
         <tr>
             <th hidden>ID</th>
@@ -30,7 +35,27 @@
             <th>Hidden</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="lastAchievements">
+        </tbody>
+    </table>
+
+    <br/>
+
+    <h3>Rarest achievements:</h3>
+
+    <table class="player-achievements">
+        <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Icon</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Number of players unlocked</th>
+            <th>Percent of players unlocked</th>
+            <th>Hidden</th>
+        </tr>
+        </thead>
+        <tbody id="rarestAchievements">
         </tbody>
     </table>
 
@@ -46,19 +71,46 @@
             select = document.getElementById('player-avatar');
             select.src = player.avatarUrl ?? ""
 
+            tb = document.getElementById('lastAchievements')
             player.lastAchievements.forEach(function (playerAchievement) {
                 var PlatformName = player.platform.name ?? ""
-                $('tbody').append(`
-                    <tr>
-                        <td hidden>${playerAchievement.id}</td>
-                        <td><div class="achievement_icon"><img src="${playerAchievement.achievement.iconUrl}"/></div></td>
-                        <td>${playerAchievement.achievement.name}</td>
-                        <td>${playerAchievement.achievement.description}</td>
-                        <td>${playerAchievement.achievement.numOwners}</td>
-                        <td>${playerAchievement.achievement.percentOwners}</td>
-                        <td>${playerAchievement.achievement.hidden}</td>
-                    </tr>
-                `)
+                var row = tb.insertRow('tr')
+                var td = row.insertCell(0)
+                td.innerHTML = playerAchievement.id
+                td.hidden = true
+                var td = row.insertCell(1)
+                td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
+                var td = row.insertCell(2)
+                td.innerHTML = playerAchievement.achievement.name
+                var td = row.insertCell(3)
+                td.innerHTML = playerAchievement.achievement.description
+                var td = row.insertCell(4)
+                td.innerHTML = playerAchievement.achievement.numOwners
+                var td = row.insertCell(5)
+                td.innerHTML = playerAchievement.achievement.percentOwners
+                var td = row.insertCell(6)
+                td.innerHTML = playerAchievement.achievement.hidden
+            });
+
+            tb = document.getElementById('rarestAchievements')
+            player.rarestAchievements.forEach(function (playerAchievement) {
+                var PlatformName = player.platform.name ?? ""
+                var row = tb.insertRow('tr')
+                var td = row.insertCell(0)
+                td.innerHTML = playerAchievement.id
+                td.hidden = true
+                var td = row.insertCell(1)
+                td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
+                var td = row.insertCell(2)
+                td.innerHTML = playerAchievement.achievement.name
+                var td = row.insertCell(3)
+                td.innerHTML = playerAchievement.achievement.description
+                var td = row.insertCell(4)
+                td.innerHTML = playerAchievement.achievement.numOwners
+                var td = row.insertCell(5)
+                td.innerHTML = playerAchievement.achievement.percentOwners
+                var td = row.insertCell(6)
+                td.innerHTML = playerAchievement.achievement.hidden
             });
 
         })

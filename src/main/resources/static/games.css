@@ -28,6 +28,17 @@ input:read-only {
     border: 1px solid steelblue;
 }
 
+.player-achievements {
+    border: 1px solid steelblue;
+    width: 300px;
+    border-collapse: collapse;
+}
+
+.player-achievements tr td, th {
+    padding: 5px;
+    border: 1px solid steelblue;
+}
+
 .table_icon img {
     width: 133px;
     height: 50px;

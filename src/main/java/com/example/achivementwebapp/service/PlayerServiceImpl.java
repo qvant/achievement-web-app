@@ -23,6 +23,7 @@ public class PlayerServiceImpl implements PlayerService {
     public Player findByIdAndPlatformId(Long id, Long platformId) {
         var player =  playerRepository.findByIdAndPlatformId(id, platformId).orElseThrow(()-> new RuntimeException(("Not found player " + id)));
         player.setLastAchievements(playerAchievementRepository.findLastByPlayerId(id, platformId));
+        player.setRarestAchievements(playerAchievementRepository.findRarestByPlayerId(id, platformId));
         return player;
     }
 }
