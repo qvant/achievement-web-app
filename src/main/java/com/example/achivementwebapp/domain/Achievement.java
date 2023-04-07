@@ -1,9 +1,6 @@
 package com.example.achivementwebapp.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,4 +29,7 @@ public class Achievement {
     String lockedIconUrl;
     @Column(name = "is_hidden")
     boolean hidden;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "game_id", nullable = false)
+    Game game;
 }

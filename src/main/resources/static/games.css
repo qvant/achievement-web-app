@@ -30,7 +30,7 @@ input:read-only {
 
 .player-achievements {
     border: 1px solid steelblue;
-    width: 300px;
+    width: 600px;
     border-collapse: collapse;
 }
 

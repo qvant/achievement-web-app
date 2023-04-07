@@ -20,10 +20,11 @@ public class AchievementDto {
     String iconUrl;
     String lockedIconUrl;
     boolean hidden;
+    GameDto game;
     public static AchievementDto toDto(Achievement achievement){
         if (achievement != null) {
             return new AchievementDto(achievement.getId(), achievement.getName(), achievement.getExtId(), achievement.getDescription(), achievement.getNumOwners(),
-                    achievement.getPercentOwners(), achievement.getIconUrl(), achievement.getLockedIconUrl(), achievement.isHidden());
+                    achievement.getPercentOwners(), achievement.getIconUrl(), achievement.getLockedIconUrl(), achievement.isHidden(), GameDto.toDtoLight(achievement.getGame()));
         }
         return new AchievementDto();
     }

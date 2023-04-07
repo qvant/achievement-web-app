@@ -28,10 +28,12 @@
         <tr>
             <th hidden>ID</th>
             <th>Icon</th>
+            <th>Game</th>
             <th>Name</th>
             <th>Description</th>
             <th>Number of players unlocked</th>
             <th>Percent of players unlocked</th>
+            <th>Unlocked at</th>
             <th>Hidden</th>
         </tr>
         </thead>
@@ -48,10 +50,12 @@
         <tr>
             <th hidden>ID</th>
             <th>Icon</th>
+            <th>Game</th>
             <th>Name</th>
             <th>Description</th>
             <th>Number of players unlocked</th>
             <th>Percent of players unlocked</th>
+            <th>Unlocked at</th>
             <th>Hidden</th>
         </tr>
         </thead>
@@ -75,20 +79,24 @@
             player.lastAchievements.forEach(function (playerAchievement) {
                 var PlatformName = player.platform.name ?? ""
                 var row = tb.insertRow('tr')
-                var td = row.insertCell(0)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.id
                 td.hidden = true
-                var td = row.insertCell(1)
+                var td = row.insertCell()
                 td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
-                var td = row.insertCell(2)
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.game.name
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.name
-                var td = row.insertCell(3)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.description
-                var td = row.insertCell(4)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.numOwners
-                var td = row.insertCell(5)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.percentOwners
-                var td = row.insertCell(6)
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.dtUnlock
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.hidden
             });
 
@@ -96,20 +104,24 @@
             player.rarestAchievements.forEach(function (playerAchievement) {
                 var PlatformName = player.platform.name ?? ""
                 var row = tb.insertRow('tr')
-                var td = row.insertCell(0)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.id
                 td.hidden = true
-                var td = row.insertCell(1)
+                var td = row.insertCell()
                 td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
-                var td = row.insertCell(2)
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.game.name
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.name
-                var td = row.insertCell(3)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.description
-                var td = row.insertCell(4)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.numOwners
-                var td = row.insertCell(5)
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.percentOwners
-                var td = row.insertCell(6)
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.dtUnlock
+                var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.hidden
             });
 
