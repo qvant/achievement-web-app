@@ -33,4 +33,6 @@ public class Player {
     private List<PlayerAchievement> lastAchievements;
     @Transient
     private List<PlayerAchievement> rarestAchievements;
+    @Transient
+    private PlayerSummary playerSummary;
 }

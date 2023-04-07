@@ -28,6 +28,7 @@ public class PlayerDto {
 
     private List<PlayerAchievementDto> lastAchievements;
     private List<PlayerAchievementDto> rarestAchievements;
+    private PlayerSummaryDto playerSummary;
 
     public PlayerDto(long id, PlatformDto platform, String name, String extId, LocalDate dtCreate, LocalDate dtUpdate, String avatarUrl) {
         this.id = id;
@@ -47,6 +48,9 @@ public class PlayerDto {
             }
             if (player.getRarestAchievements() != null) {
                 playerDto.rarestAchievements = player.getRarestAchievements().stream().map(PlayerAchievementDto::toDto).collect(Collectors.toList());
+            }
+            if (player.getPlayerSummary() != null) {
+                playerDto.playerSummary = PlayerSummaryDto.toDto(player.getPlayerSummary());
             }
             return playerDto;
         }
