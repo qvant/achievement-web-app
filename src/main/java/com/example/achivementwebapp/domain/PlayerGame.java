@@ -19,9 +19,9 @@ public class PlayerGame {
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
     @Column (name = "percent_complete")
-    private double percentComplete;
+    private Double percentComplete;
     @Column (name = "is_perfect")
-    private boolean perfect;
+    private Boolean perfect;
     @Column (name = "dt_last_perfected")
     private LocalDate LastPerfected;
 

@@ -19,13 +19,13 @@ import java.time.LocalDate;
 public class PlayerGameDto {
     private long id;
     private GameDto game;
-    private double percentComplete;
-    private boolean perfect;
+    private Double percentComplete;
+    private Boolean perfect;
     private LocalDate LastPerfected;
 
     public static PlayerGameDto toDto(PlayerGame playerGame){
         if (playerGame != null) {
-            return new PlayerGameDto(playerGame.getId(), GameDto.toDto(playerGame.getGame()), playerGame.getPercentComplete(), playerGame.isPerfect(), playerGame.getLastPerfected());
+            return new PlayerGameDto(playerGame.getId(), GameDto.toDto(playerGame.getGame()), playerGame.getPercentComplete(), playerGame.getPerfect(), playerGame.getLastPerfected());
         }
         return new PlayerGameDto();
     }
