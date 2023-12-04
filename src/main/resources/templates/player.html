@@ -14,30 +14,10 @@
 
     <br/>
 
-    <div class="row">
-        <label for="player-name">Name:</label>
-        <input id="player-name" name="player-name" type="text" readonly></input>
-    </div>
-
-    <div class="row">
-        <label for="player-total-games">Games owned:</label>
-        <input id="player-total-games" name="player-total-games" type="text" readonly></input>
-    </div>
-
-    <div class="row">
-        <label for="player-perfect-games">Games perfected:</label>
-        <input id="player-perfect-games" name="player-perfect-games" type="text" readonly></input>
-    </div>
-
-    <div class="row">
-        <label for="player-average-percent">Average percent completion:</label>
-        <input id="player-average-percent" name="player-average-percent" type="text" readonly></input>
-    </div>
-
-    <div class="row">
-        <label for="player-last-update">Last profile update:</label>
-        <input id="player-last-update" name="player-last-update" type="text" readonly></input>
-    </div>
+    <table class="player-summary">
+        <tbody id="player-summary-body">
+        </tbody>
+    </table>
 
 
 
@@ -45,7 +25,7 @@
 
     <h3>Last achievements:</h3>
 
-    <table class="player-achievements" >
+    <table class="player-achievements">
         <thead>
         <tr>
             <th hidden>ID</th>
@@ -92,16 +72,33 @@
         var urlParams = new URLSearchParams(queryString);
 
         $.get('/api/platform/' + urlParams.get('platform_id') + '/player/' + urlParams.get('player_id') + '/').done(function (player) {
-            select = document.getElementById('player-name');
-            select.value = player.name
-            select = document.getElementById('player-total-games');
-            select.value = player.playerSummary.totalGames
-            select = document.getElementById('player-perfect-games');
-            select.value = player.playerSummary.completedGames
-            select = document.getElementById('player-average-percent');
-            select.value = player.playerSummary.avgPercent
-            select = document.getElementById('player-last-update');
-            select.value = player.playerSummary.lastUpdate
+            tb = document.getElementById('player-summary-body');
+            var row = tb.insertRow(-1)
+            var td = row.insertCell()
+            td.innerHTML = "Name:"
+            var td = row.insertCell()
+            td.innerHTML = player.name
+            var row = tb.insertRow(-1)
+            var td = row.insertCell()
+            td.innerHTML = "Games owned:"
+            var td = row.insertCell()
+            td.innerHTML = player.playerSummary.totalGames
+            var row = tb.insertRow(-1)
+            var td = row.insertCell()
+            td.innerHTML = "Games perfected:"
+            var td = row.insertCell()
+            td.innerHTML = player.playerSummary.completedGames
+            var row = tb.insertRow(-1)
+            var td = row.insertCell()
+            td.innerHTML = "Average percent completion:"
+            var td = row.insertCell()
+            td.innerHTML =  player.playerSummary.avgPercent
+            var row = tb.insertRow(-1)
+            var td = row.insertCell()
+            td.innerHTML = "Last profile update:"
+            var td = row.insertCell()
+            td.innerHTML =  player.playerSummary.lastUpdate
+
             select = document.getElementById('player-avatar');
             select.src = player.avatarUrl ?? ""
 
