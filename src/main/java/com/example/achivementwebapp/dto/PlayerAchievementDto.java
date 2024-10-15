@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 public class PlayerAchievementDto {
     private long id;
     private AchievementDto achievement;
-    private LocalDate dtUnlock;
+    private LocalDateTime dtUnlock;
 
     public static PlayerAchievementDto toDto(PlayerAchievement achievement){
         if (achievement != null) {

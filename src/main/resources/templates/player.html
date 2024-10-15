@@ -103,7 +103,8 @@
             select.src = player.avatarUrl ?? ""
 
             tb = document.getElementById('lastAchievements')
-            player.lastAchievements.forEach(function (playerAchievement) {
+            for (let i=player.lastAchievements.length - 1; i >= 0; i--){
+                var playerAchievement = player.lastAchievements[i]
                 var PlatformName = player.platform.name ?? ""
                 var row = tb.insertRow('tr')
                 var td = row.insertCell()
@@ -125,7 +126,7 @@
                 td.innerHTML = playerAchievement.dtUnlock
                 var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.hidden
-            });
+            };
 
             tb = document.getElementById('rarestAchievements')
             player.rarestAchievements.forEach(function (playerAchievement) {

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,6 +20,6 @@ public class PlayerAchievement {
     @JoinColumn(name = "achievement_id", nullable = false)
     private Achievement achievement;
     @Column (name = "dt_unlock")
-    private LocalDate dtUnlock;
+    private LocalDateTime dtUnlock;
 }
 
