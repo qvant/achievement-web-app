@@ -1,6 +1,6 @@
 body {
     padding: 50px;
-    background-color: #5A5A5A;
+    background-color: #30353d;
     color: lightgrey;
 }
 
@@ -12,6 +12,11 @@ label {
 input:read-only {
     background: #5A5A5A;
 }
+
+a:visited {
+  color: red;
+}
+
 
 .row {
     margin-top: 10px;
@@ -30,7 +35,7 @@ input:read-only {
 
 .player-achievements {
     border: 1px solid steelblue;
-    width: 600px;
+    width: 80%;
     border-collapse: collapse;
 }
 
@@ -54,7 +59,7 @@ input:read-only {
 }
 
 .achievement_icon img {
-    width: 100px;
-    height: 100px;
+    width: 40px;
+    height: 40px;
 }
 

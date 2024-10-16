@@ -113,7 +113,7 @@
                 var td = row.insertCell()
                 td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
                 var td = row.insertCell()
-                td.innerHTML = playerAchievement.achievement.game.name
+                td.innerHTML = ('<a href=gameShow?game_id=' + playerAchievement.achievement.game.id + '&platform_id=' + playerAchievement.achievement.game.platform.id + '>' + playerAchievement.achievement.game.name + '</a>')
                 var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.name
                 var td = row.insertCell()
@@ -129,7 +129,8 @@
             };
 
             tb = document.getElementById('rarestAchievements')
-            player.rarestAchievements.forEach(function (playerAchievement) {
+            for (let i=player.lastAchievements.length - 1; i >= 0; i--){
+                var playerAchievement = player.rarestAchievements[i]
                 var PlatformName = player.platform.name ?? ""
                 var row = tb.insertRow('tr')
                 var td = row.insertCell()
@@ -138,7 +139,7 @@
                 var td = row.insertCell()
                 td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
                 var td = row.insertCell()
-                td.innerHTML = playerAchievement.achievement.game.name
+                td.innerHTML = ('<a href=gameShow?game_id=' + playerAchievement.achievement.game.id + '&platform_id=' + playerAchievement.achievement.game.platform.id + '>' + playerAchievement.achievement.game.name + '</a>')
                 var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.name
                 var td = row.insertCell()
@@ -151,7 +152,7 @@
                 td.innerHTML = playerAchievement.dtUnlock
                 var td = row.insertCell()
                 td.innerHTML = playerAchievement.achievement.hidden
-            });
+            };
 
         })
     });
