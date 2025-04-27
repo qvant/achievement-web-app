@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -21,5 +20,8 @@ public class PlayerAchievement {
     private Achievement achievement;
     @Column (name = "dt_unlock")
     private LocalDateTime dtUnlock;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "player_id", nullable = false)
+    private Player player;
 }
 

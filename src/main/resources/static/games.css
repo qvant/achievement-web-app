@@ -13,10 +13,13 @@ input:read-only {
     background: #5A5A5A;
 }
 
+a:link {
+  color: lightblue;
+}
+
 a:visited {
   color: red;
 }
-
 
 .row {
     margin-top: 10px;
@@ -39,8 +42,9 @@ a:visited {
     border-collapse: collapse;
 }
 
-.player-summary tr td, th {
+.player-summary tr td, th, tbody, table {
     padding: 5px;
+    border-collapse: collapse;
     border: 1px solid steelblue;
 }
 

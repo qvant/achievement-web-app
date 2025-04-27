@@ -1,8 +1,6 @@
 package com.example.achivementwebapp.rest;
 
-import com.example.achivementwebapp.dto.GameDto;
 import com.example.achivementwebapp.dto.PlayerDto;
-import com.example.achivementwebapp.dto.PlayerGameDto;
 import com.example.achivementwebapp.service.PlayerGamesService;
 import com.example.achivementwebapp.service.PlayerService;
 import lombok.RequiredArgsConstructor;

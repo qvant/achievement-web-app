@@ -2,12 +2,11 @@ package com.example.achivementwebapp.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,5 +18,5 @@ public class PlayerSummary {
     private long completedGames;
     private double avgPercent;
     private long totalGames;
-    private LocalDate lastUpdate;
+    private LocalDateTime lastUpdate;
 }

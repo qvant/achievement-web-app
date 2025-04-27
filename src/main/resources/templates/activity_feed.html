@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Activity feed</title>
+    <link rel="stylesheet" href="games.css">
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <a href="/">
+            <button type="button">Back to root</button>
+        </a>
+    </div>
+
+    <h3>Activity feed:</h3>
+
+
+    <br/>
+
+    <h3>Last achievements:</h3>
+
+    <table class="player-achievements">
+        <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Icon</th>
+            <th>Player</th>
+            <th>Platform</th>
+            <th>Game</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Number of players unlocked</th>
+            <th>Percent of players unlocked</th>
+            <th>Unlocked at</th>
+            <th>Hidden</th>
+        </tr>
+        </thead>
+        <tbody id="lastAchievements">
+        </tbody>
+    </table>
+
+    <br/>
+
+    <script>
+    $(function () {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+
+        $.get('/api/get_last_achievements/').done(function (lastAchievements) {
+
+            tb = document.getElementById('lastAchievements')
+            for (let i=lastAchievements.length - 1; i >= 0; i--){
+                var playerAchievement = lastAchievements[i]
+                var PlatformName = playerAchievement.achievement.game.platform.name ?? ""
+                var row = tb.insertRow('tr')
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.id
+                td.hidden = true
+                var td = row.insertCell()
+                td.innerHTML = ('<div class="achievement_icon"><img src="'+ playerAchievement.achievement.iconUrl + '"/></div></td>')
+                var td = row.insertCell()
+                td.innerHTML = ('<a href=playerShow?player_id=' + playerAchievement.player.id + '&platform_id=' + playerAchievement.achievement.game.platform.id + '>' + playerAchievement.player.name + '</a>')
+                var td = row.insertCell()
+                td.innerHTML = PlatformName
+                var td = row.insertCell()
+                td.innerHTML = ('<a href=gameShow?game_id=' + playerAchievement.achievement.game.id + '&platform_id=' + playerAchievement.achievement.game.platform.id + '>' + playerAchievement.achievement.game.name + '</a>')
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.name
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.description
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.numOwners
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.percentOwners
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.dtUnlock
+                var td = row.insertCell()
+                td.innerHTML = playerAchievement.achievement.hidden
+            };
+
+        })
+    });
+
+    </script>
+
+    <div class="row">
+        <a href="/">
+            <button type="button">Back to root</button>
+        </a>
+    </div>
+
+</body>
+</html>

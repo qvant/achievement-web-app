@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +25,7 @@ public class PlayerDto {
 
     private LocalDate dtCreate;
 
-    private LocalDate dtUpdate;
+    private LocalDateTime dtUpdate;
 
     private String avatarUrl;
 
@@ -30,7 +33,7 @@ public class PlayerDto {
     private List<PlayerAchievementDto> rarestAchievements;
     private PlayerSummaryDto playerSummary;
 
-    public PlayerDto(long id, PlatformDto platform, String name, String extId, LocalDate dtCreate, LocalDate dtUpdate, String avatarUrl) {
+    public PlayerDto(long id, PlatformDto platform, String name, String extId, LocalDate dtCreate, LocalDateTime dtUpdate, String avatarUrl) {
         this.id = id;
         this.platform = platform;
         this.name = name;
@@ -42,7 +45,7 @@ public class PlayerDto {
 
     public static PlayerDto toDto(Player player) {
         if (player != null) {
-            var playerDto = new PlayerDto(player.getId(), PlatformDto.toDto(player.getPlatform()), player.getName(), player.getExtId(), player.getDtCreate(), player.getDtUpdate(), player.getAvatarUrl());
+            var playerDto = new PlayerDto(player.getId(), PlatformDto.toDto(player.getPlatform()), player.getName(), player.getExtId(), player.getDtCreate(), player.getDtUpdate().truncatedTo(ChronoUnit.SECONDS), player.getAvatarUrl());
             if (player.getLastAchievements() != null) {
                 playerDto.lastAchievements = player.getLastAchievements().stream().map(PlayerAchievementDto::toDto).collect(Collectors.toList());
             }
@@ -53,6 +56,12 @@ public class PlayerDto {
                 playerDto.playerSummary = PlayerSummaryDto.toDto(player.getPlayerSummary());
             }
             return playerDto;
+        }
+        return new PlayerDto();
+    }
+    public static PlayerDto toDtoNoChilds(Player player) {
+        if (player != null) {
+            return new PlayerDto(player.getId(), PlatformDto.toDto(player.getPlatform()), player.getName(), player.getExtId(), player.getDtCreate(), player.getDtUpdate().truncatedTo(ChronoUnit.SECONDS), player.getAvatarUrl());
         }
         return new PlayerDto();
     }

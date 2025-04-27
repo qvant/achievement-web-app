@@ -1,9 +1,6 @@
 package com.example.achivementwebapp.dto;
 
 import com.example.achivementwebapp.domain.Game;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

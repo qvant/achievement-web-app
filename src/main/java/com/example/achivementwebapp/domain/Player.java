@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -26,7 +27,7 @@ public class Player {
     @Column(name = "dt_create")
     private LocalDate dtCreate;
     @Column(name = "dt_update")
-    private LocalDate dtUpdate;
+    private LocalDateTime dtUpdate;
     @Column(name = "avatar_url")
     private String avatarUrl;
     @Transient

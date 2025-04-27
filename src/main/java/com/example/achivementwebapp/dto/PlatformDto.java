@@ -1,6 +1,5 @@
 package com.example.achivementwebapp.dto;
 
-import com.example.achivementwebapp.domain.Game;
 import com.example.achivementwebapp.domain.Platform;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

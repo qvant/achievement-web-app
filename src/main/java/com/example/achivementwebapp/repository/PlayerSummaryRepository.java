@@ -1,15 +1,12 @@
 package com.example.achivementwebapp.repository;
 
-import com.example.achivementwebapp.domain.PlayerAchievement;
 import com.example.achivementwebapp.domain.PlayerSummary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
 public interface PlayerSummaryRepository extends JpaRepository<PlayerSummary, Long> {
     @Query(value = "select\n" +
-            "            round(avg(case when g.has_achievements\n" +
+            "            round(avg(case when g.has_achievements and pg.percent_complete > 0 \n" +
             "                then pg.percent_complete else null\n" +
             "                end)\\:\\:numeric, 2) avg_percent,\n" +
             "            count(case when pg.is_perfect then 1 end) completed_games,\n" +

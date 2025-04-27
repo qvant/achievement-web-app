@@ -1,9 +1,7 @@
 package com.example.achivementwebapp.rest;
 
-import com.example.achivementwebapp.dto.PlayerDto;
 import com.example.achivementwebapp.dto.PlayerGameDto;
 import com.example.achivementwebapp.service.PlayerGamesService;
-import com.example.achivementwebapp.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

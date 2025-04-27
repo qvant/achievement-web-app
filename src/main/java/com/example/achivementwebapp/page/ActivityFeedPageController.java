@@ -7,16 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class GamesPageController {
+public class ActivityFeedPageController {
 
-    @GetMapping("/games")
+    @GetMapping("/activity_feed")
     public String listPage(Model model) {
-        return "gamesList";
-    }
-
-    @GetMapping("/gameShow")
-    public String showPage() {
-        return "game";
+        return "activity_feed";
     }
 
 }

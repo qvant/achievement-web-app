@@ -1,8 +1,6 @@
 package com.example.achivementwebapp.dto;
 
 import com.example.achivementwebapp.domain.Achievement;
-import com.example.achivementwebapp.domain.Company;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

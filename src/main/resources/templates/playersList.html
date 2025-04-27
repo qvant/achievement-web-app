@@ -7,7 +7,11 @@
     <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body >
-<a href="/">Back to root</a>
+<div class="row">
+    <a href="/">
+        <button type="button">Back to root</button>
+    </a>
+</div>
 <br>
 <table class="games">
     <thead>
@@ -32,7 +36,7 @@
                     <tr>
                         <td hidden>${player.id}</td>
                         <td><div class="player_avatar"><img src="${player.avatarUrl}"/></div></td>
-                        <td><a href="playerShow?player_id=${player.id}&platform_id=${player.platform.id}">${player.name}</a></td>
+                        <td><a href="playerShow?player_id=${player.id}&platform_id=${player.platform.id}" class="simple">${player.name}</a></td>
                         <td>${PlatformName}</td>
                         <td>${player.dtCreate}</td>
                         <td>${player.dtUpdate}</td>
@@ -43,6 +47,9 @@
     });
 </script>
 <br>
-<a href="/">Back to root</a>
-</body>
+<div class="row">
+    <a href="/">
+        <button type="button">Back to root</button>
+    </a>
+</div>
 </html>
