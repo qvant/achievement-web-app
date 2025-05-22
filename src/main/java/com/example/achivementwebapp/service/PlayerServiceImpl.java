@@ -1,6 +1,7 @@
 package com.example.achivementwebapp.service;
 
 import com.example.achivementwebapp.domain.Player;
+import com.example.achivementwebapp.pageobjects.PlayersPaginated;
 import com.example.achivementwebapp.repository.PlayerAchievementRepository;
 import com.example.achivementwebapp.repository.PlayerRepository;
 import com.example.achivementwebapp.repository.PlayerSummaryRepository;
@@ -18,6 +19,12 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> findAll() {
         return playerRepository.findAll();
+    }
+
+    @Override
+    public PlayersPaginated findByConditionsPaginated(Long platformId, Long playerId, String playerName, Long pageNumber, Long pageSize) {
+        Long count = playerRepository.countByConditions(platformId, playerId, playerName);
+        return PlayersPaginated.builder().players(playerRepository.findByConditionsPaginated(platformId, playerId, playerName, pageNumber * pageSize, pageSize)).count(count).build();
     }
 
     @Override

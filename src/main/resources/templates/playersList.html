@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<body lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>List of all players</title>
@@ -13,7 +13,24 @@
     </a>
 </div>
 <br>
-<table class="games">
+<select name="platforms" id="platform-select" required="false">
+    <option id="All">All</option>
+</select>
+<input name="player_name" id="player_name" required="false"/>
+
+<script>
+    $(function () {
+        $.get('/api/platforms').done(function (platforms) {
+            platforms.forEach(function (platform) {
+                $('select').append(`
+                        <option value=\" + ${platform.id} + \">${platform.name}</option>
+                `)
+            });
+        })
+    });
+</script>
+<button onclick="LoadPlayers()">Find</button>
+<table class="games" id="players">
     <thead>
     <tr>
         <th hidden>ID</th>
@@ -24,15 +41,48 @@
         <th>Last update</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="playerList">
     </tbody>
 </table>
-<script>
+<br>
+<div class="row" id="page-selector">
+</div>
+<script id ="LoadPlayers">
+    function LoadPlayers() {
     $(function () {
-        $.get('/api/players').done(function (players) {
-            players.forEach(function (player) {
+        var tbody = document.getElementById('playerList');
+        $(playerList).empty();
+        var platform = document.getElementById("platform-select");
+        var args = '/api/players'
+        var firstArg = '?'
+        if (platform.value != "All"){
+            args = args + firstArg + 'platform_id=' + platform.value
+            firstArg = '&'
+        }
+        var player_name = document.getElementById("player_name");
+        if (player_name.value != ""){
+            args = args + firstArg + 'player_name=' + player_name.value
+            firstArg = '&'
+        }
+        $.get(args).done(function (players) {
+            player_list = players.players
+            var pages_total = players.pages
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var pageSelector = document.getElementById("page-selector");
+                pageSelector.innerHTML = '';
+                pageSelector.innerHTML = '<a href="players?page=0"><button type="button">first</button></a>'
+                var current_page = parseInt(urlParams.get('page'))
+                if (current_page > 0){
+                    pageSelector.innerHTML = pageSelector.innerHTML + '<a href="players?page=' + (current_page - 1) + '"><button type="button">previous</button></a>'
+                }
+                if (current_page < pages_total){
+                    pageSelector.innerHTML = pageSelector.innerHTML + '<a href="players?page=' + (current_page + 1) + '"><button type="button">next</button></a>'
+                }
+                pageSelector.innerHTML = pageSelector.innerHTML + '<a href="players?page=' + pages_total + '"><button type="button">last</button></a>';
+            player_list.forEach(function (player) {
                 var PlatformName = player.platform.name ?? ""
-                $('tbody').append(`
+                $(playerList).append(`
                     <tr>
                         <td hidden>${player.id}</td>
                         <td><div class="player_avatar"><img src="${player.avatarUrl}"/></div></td>
@@ -45,11 +95,15 @@
             });
         })
     });
+    }
 </script>
-<br>
+<script>
+    LoadPlayers()
+</script>
 <div class="row">
     <a href="/">
         <button type="button">Back to root</button>
     </a>
 </div>
+</body>
 </html>
