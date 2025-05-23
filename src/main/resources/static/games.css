@@ -65,9 +65,10 @@ a:visited {
     border: 1px solid steelblue;
 }
 
-.player-achievements tr td, th {
+.player-achievements tr, td, th, tbody, table {
     padding: 5px;
     border: 1px solid steelblue;
+    border-collapse: collapse;
 }
 
 .table_icon img {
