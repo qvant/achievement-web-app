@@ -25,6 +25,12 @@ a:visited {
     margin-top: 10px;
 }
 
+.layout-table, tbody, table, tr, th, td {
+    border: hidden;
+    padding: 0;
+        border-spacing: 0;
+}
+
 .games {
     border: 1px solid steelblue;
     width: 300px;
@@ -32,6 +38,17 @@ a:visited {
 }
 
 .games tr td, th {
+    padding: 5px;
+    border: 1px solid steelblue;
+}
+
+.players {
+    border: 1px solid steelblue;
+    width: 800px;
+    border-collapse: collapse;
+}
+
+.players tr td, th, tbody, table {
     padding: 5px;
     border: 1px solid steelblue;
 }

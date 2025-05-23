@@ -13,10 +13,18 @@
     </a>
 </div>
 <br>
-<select name="platforms" id="platform-select" required="false">
-    <option id="All">All</option>
-</select>
-<input name="player_name" id="player_name" required="false"/>
+<table class="layout-table">
+    <tbody>
+    <tr>
+        <td><label for="platform-select">Platform</label></td>
+        <td><label for="player_name">Player name</label> <br /></td>
+    </tr>
+    <tr><td><select name="platforms" id="platform-select" required="false">
+        <option id="All">All</option>
+    </select></td>
+    <td><input name="player_name" id="player_name" required="false"/></td></tr>
+    </tbody>
+</table>
 
 <script>
     $(function () {
@@ -30,7 +38,7 @@
     });
 </script>
 <button onclick="LoadPlayers()">Find</button>
-<table class="games" id="players">
+<table class="players" id="players">
     <thead>
     <tr>
         <th hidden>ID</th>
